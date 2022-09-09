@@ -1,18 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Post = (props) => {
-  const navigate = useNavigate();
   const { id, title } = props;
-
-  const handleClick = () => {
-    navigate(`/post/${id}`);
-  };
 
   return (
     <div className="post-container">
-      <h4 className="title-heading" onClick={handleClick}>
+      <Link to={`/post/${id}`} state={props}>
         {title}
-      </h4>
+      </Link>
     </div>
   );
 };

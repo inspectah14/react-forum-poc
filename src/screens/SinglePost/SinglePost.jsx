@@ -1,29 +1,25 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const SinglePost = () => {
-  const { id } = useParams();
-  const [postData, setPostData] = useState(null);
+  const location = useLocation();
+  const { id, title, body } = location.state;
   const [commentData, setCommentData] = useState(null);
-  useEffect(() => {
-    axios
-      .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
-      .then((res) => setPostData(res.data));
-  }, [id]);
 
   useEffect(() => {
     axios
       .get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
       .then((res) => setCommentData(res.data));
   }, [id]);
+
   return (
     <>
-      {postData && commentData ? (
+      {location.state && commentData ? (
         <div className="single-post-container">
           <div className="single-post-heading">
-            <h3>Post Title: {postData.title}</h3>
-            <p>{postData.body}</p>
+            <h3>Post Title: {title}</h3>
+            <p>{body}</p>
           </div>
           <h4>Comments</h4>
           {commentData.map((comment, i) => {
