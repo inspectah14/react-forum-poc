@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
-import Home from "./screens/Home";
-import SinglePost from "./screens/SinglePost";
-import "./App.css";
+import Home from "./screens/Home/Home";
+import SinglePost from "./screens/SinglePost/SinglePost";
+import "./App.scss";
 
 function App() {
   return (
