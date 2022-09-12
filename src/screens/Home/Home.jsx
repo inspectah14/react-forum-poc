@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import Post from "../../components/Post";
+import Post from "../../components/Post/Post";
+import styles from "./Home.module.scss";
 import axios from "axios";
 
 const Home = () => {
@@ -12,8 +13,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="main">
-      <h2>Blog Posts</h2>
+    <div className={styles.main}>
       {data ? (
         data.map((post, i) => {
           return <Post key={i} {...post} />;

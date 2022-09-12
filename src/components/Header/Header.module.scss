@@ -1,0 +1,15 @@
+.header {
+  height: 85px;
+  margin-bottom: 30px;
+  text-align: center;
+
+  .navBtn {
+    padding: 5px 7px;
+    border-radius: 5px;
+    border-color: midnightblue;
+    background: ivory;
+    &:hover {
+      font-weight: 700;
+    }
+  }
+}

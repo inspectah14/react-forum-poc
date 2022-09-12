@@ -1,0 +1,18 @@
+.postLink {
+  font-size: 12px;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  height: 120px;
+  width: 120px;
+  border: 2px solid midnightblue;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 15px 10px;
+  text-align: center;
+  background: ivory;
+
+  &:hover {
+    background: seashell;
+  }
+}
