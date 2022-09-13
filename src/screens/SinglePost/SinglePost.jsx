@@ -23,11 +23,7 @@ const SinglePost = () => {
   };
 
   useEffect(() => {
-    if (!location.state) {
-      getSinglePost();
-    } else {
-      setPost(location.state);
-    }
+    !location.state ? getSinglePost() : setPost(location.state);
     getComments();
   }, [location.state]);
 
