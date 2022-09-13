@@ -1,21 +1,24 @@
 import { useState, useEffect } from "react";
 import Post from "../../components/Post/Post";
 import styles from "./Home.module.scss";
-import axios from "axios";
 
 const Home = () => {
-  const [data, setData] = useState(null);
+  const [posts, setPosts] = useState(null);
+
+  const getPosts = async () => {
+    let res = await fetch("https://jsonplaceholder.typicode.com/posts/");
+    let data = await res.json();
+    setPosts(data);
+  };
 
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts/")
-      .then((res) => setData(res.data));
+    getPosts();
   }, []);
 
   return (
     <div className={styles.main}>
-      {data ? (
-        data.map((post, i) => {
+      {posts ? (
+        posts.map((post, i) => {
           return <Post key={i} {...post} />;
         })
       ) : (

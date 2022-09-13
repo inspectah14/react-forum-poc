@@ -1,27 +1,44 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import styles from "./SinglePost.module.scss";
-import axios from "axios";
 
 const SinglePost = () => {
-  const location = useLocation();
-  const { id, title, body } = location.state;
+  const [post, setPost] = useState(null);
   const [commentData, setCommentData] = useState(null);
+  const { id } = useParams();
+  const location = useLocation();
+
+  const getSinglePost = async () => {
+    let res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    let data = await res.json();
+    setPost(data);
+  };
+
+  const getComments = async () => {
+    let res = await fetch(
+      `https://jsonplaceholder.typicode.com/posts/${id}/comments`
+    );
+    let data = await res.json();
+    setCommentData(data);
+  };
 
   useEffect(() => {
-    axios
-      .get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
-      .then((res) => setCommentData(res.data));
-  }, [id]);
+    if (!location.state) {
+      getSinglePost();
+    } else {
+      setPost(location.state);
+    }
+    getComments();
+  }, [location.state]);
 
   return (
     <>
-      {location.state && commentData ? (
+      {post && commentData ? (
         <div className={styles.singlePostContainer}>
           <h3>Forum Post</h3>
           <div className={styles.singlePostHeading}>
-            <h4>{title}</h4>
-            <p>{body}</p>
+            <h4>{post.title}</h4>
+            <p>{post.body}</p>
           </div>
           <div className={styles.commentsContainer}>
             <h3>Comments</h3>
