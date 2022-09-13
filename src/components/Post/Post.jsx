@@ -6,6 +6,7 @@ const Post = (props) => {
 
   return (
     <Link to={`/post/${id}`} state={props} className={styles.postLink}>
+      <h3>Forum Post</h3>
       {title}
     </Link>
   );

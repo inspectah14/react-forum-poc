@@ -18,8 +18,8 @@ const SinglePost = () => {
     <>
       {location.state && commentData ? (
         <div className={styles.singlePostContainer}>
+          <h3>Forum Post</h3>
           <div className={styles.singlePostHeading}>
-            <h3>Forum Post</h3>
             <h4>{title}</h4>
             <p>{body}</p>
           </div>
@@ -28,9 +28,9 @@ const SinglePost = () => {
             {commentData.map((comment, i) => {
               return (
                 <div key={i} className={styles.singleCommentContainer}>
+                  <h4>{comment.name}</h4>
                   <p> {comment.body}</p>
-                  <h5>User: {comment.name}</h5>
-                  <h5>Email: {comment.email} </h5>
+                  <h5>User: {comment.email} </h5>
                 </div>
               );
             })}
